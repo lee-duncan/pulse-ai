@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Pulse AI Concierge — the AI enquiry infrastructure behind the UK's fastest-growing private dental practices. Every enquiry answered. Every channel. One portal.">
+<meta property="og:title" content="Pulse AI Concierge — AI Enquiry Infrastructure for Private Dental Practices">
+<meta property="og:description" content="Every enquiry answered. Every channel captured. Integrated with your PMS.">
+<title>Pulse AI Concierge — AI Enquiry Infrastructure for Private Dental Practices</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="assets/logo.png">
+<meta property="og:image" content="assets/logo.png">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#02060c">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<filter id="ecgGlow" x="-25%" y="-80%" width="150%" height="260%">
+  <feGaussianBlur stdDeviation="3.2" result="b"/>
+  <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter>
+</defs></svg>
+<div class="grain" aria-hidden="true"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <a class="nav-logo" href="#hero" onclick="go('hero');return false;" aria-label="Pulse AI Concierge — home">
+    <img src="assets/logo.png" alt="Pulse AI Concierge">
+  </a>
+  <div class="nav-mid">
+    <button class="nav-lnk" onclick="go('problem')">The Problem</button>
+    <button class="nav-lnk" onclick="go('flow')">How It Works</button>
+    <button class="nav-lnk" onclick="go('demo')">Live Demo</button>
+    <button class="nav-lnk" onclick="go('results')">Results</button>
+    <button class="nav-lnk" onclick="go('roi')">ROI</button>
+    <button class="nav-lnk" onclick="go('pms')">Integration</button>
+  </div>
+  <div class="nav-rt">
+    <div class="nav-live ldot"><span class="dw"><i></i><b></b></span><s>Live</s></div>
+    <button class="btn b-pri b-sm" onclick="book()">Book A Demo</button>
+    <button class="burger" id="burger" onclick="openM()" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div id="mm" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="x" onclick="closeM()" aria-label="Close menu">×</button>
+  <img src="assets/logo.png" alt="Pulse AI Concierge">
+  <a href="#" onclick="go('problem');closeM();return false;">The Problem</a>
+  <a href="#" onclick="go('flow');closeM();return false;">How It Works</a>
+  <a href="#" onclick="go('demo');closeM();return false;">Live Demo</a>
+  <a href="#" onclick="go('results');closeM();return false;">Results</a>
+  <a href="#" onclick="go('roi');closeM();return false;">ROI Calculator</a>
+  <a href="#" onclick="go('pms');closeM();return false;">PMS Integration</a>
+  <button class="btn b-pri b-lg" style="margin-top:10px" onclick="book();closeM()">Book A Demo</button>
+</div>
+
+<!-- ══ HERO ══ -->
+<section id="hero">
+  <div class="h-rule" aria-hidden="true"></div>
+  <div class="h-glow1" aria-hidden="true"></div>
+  <div class="h-glow2" aria-hidden="true"></div>
+  <div class="wrap-wide" style="position:relative;z-index:2">
+    <div class="h-badge rv"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2.6s infinite;display:block" aria-hidden="true"></span><span>AI Enquiry Infrastructure · Private Dental Practices</span></div>
+    <h1 class="h1 rv rv-d1 serif">Your practice isn't losing patients.<br><em class="g-cyan">It's losing enquiries.</em></h1>
+    <p class="h-sub rv rv-d2">Pulse AI Concierge answers every call, message, DM and form — across every channel, at any hour — qualifies the patient, and writes it straight into your practice management software. Before your front desk has even looked up.</p>
+    <div class="h-cta rv rv-d2">
+      <button class="btn b-pri b-lg" onclick="book()">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book A Demo
+      </button>
+      <button class="btn b-sec b-lg" onclick="go('demo')">Watch It Handle A Call
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </button>
+    </div>
+    <p class="h-fine rv rv-d3"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Live in 48 hours · No change to your workflow · 24/7 coverage</p>
+    <div class="h-stats rv rv-d3">
+      <div class="h-stat"><div class="st-n g-cyan" id="c1">0</div><div class="st-l">Enquiries answered today</div><div class="st-d">Across 5 channels</div></div>
+      <div class="h-stat"><div class="st-n" style="color:#fff" id="c2">0s</div><div class="st-l">Average response time</div><div class="st-d" style="color:var(--gold)">Industry average: 4 min</div></div>
+      <div class="h-stat"><div class="st-n g-cyan" id="c3">0</div><div class="st-l">Consultations booked</div><div class="st-d">This week</div></div>
+      <div class="h-stat"><div class="st-n" style="color:var(--green)" id="c4">0</div><div class="st-l">Enquiries missed</div><div class="st-d">Contractually guaranteed</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══ -->
+<div id="tick" aria-label="Live enquiry feed">
+  <div class="tk-l" aria-hidden="true"><span class="ldot" style="color:var(--cyan)"><span class="dw"><i></i><b></b></span></span>Live</div>
+  <div class="tk-r" aria-hidden="true"></div>
+  <div class="tk-track" id="tkt" aria-hidden="true"></div>
+</div>
+
+<!-- ══ PROOF ══ -->
+<div id="proof">
+  <div class="pf-in">
+    <div class="pf-lb">Trusted by growth-focused practices</div>
+    <div class="pf-i"><span class="pf-star">★★★★★</span><span>"£31k recovered in month one"</span></div>
+    <div class="pf-div" aria-hidden="true"></div>
+    <div class="pf-i"><span class="pf-star">★★★★★</span><span>"Our front desk got their day back"</span></div>
+    <div class="pf-div" aria-hidden="true"></div>
+    <div class="pf-i"><span class="pf-star">★★★★★</span><span>"It paid for itself in 9 days"</span></div>
+    <div class="pf-div" aria-hidden="true"></div>
+    <div class="pf-i" style="color:var(--gold)"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--gold)" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>UK's #1 rated dental AI</div>
+  </div>
+</div>
+
+<!-- ══ PROBLEM ══ -->
+<section id="problem">
+  <div class="pb-glow" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-hd">
+      <div class="eyebrow ey-r rv">The Silent Leak</div>
+      <h2 class="sec-t rv rv-d1 serif">You've built demand.<br><em style="color:var(--red)">The phone is the bottleneck.</em></h2>
+      <p class="sec-p rv rv-d2">You spend on marketing. The enquiries arrive. But between a full diary, a two-person front desk and five different inboxes, a quarter of them never get a proper response. It doesn't show up in your P&amp;L — because you never knew they called.</p>
+    </div>
+    <div class="pb-grid">
+      <div class="pb-copy rv">
+        <h3 class="serif">The enquiries you never knew you had.</h3>
+        <p>Most practice owners assume a missed call means a voicemail. It doesn't. It means the patient dialled the next practice on Google — and booked there instead. The enquiry never enters your system, so it never enters your reporting.</p>
+        <div class="pb-pt">
+          <div class="pb-ic" aria-hidden="true" id="pbi1"></div>
+          <div><h4>The 5pm blind spot</h4><p>Around 40% of high-value enquiries land outside surgery hours — evenings, lunch breaks and weekends, when your team is treating or gone.</p></div>
+        </div>
+        <div class="pb-pt">
+          <div class="pb-ic" aria-hidden="true" id="pbi2"></div>
+          <div><h4>Five inboxes, no owner</h4><p>Phone, WhatsApp, Instagram DMs, website chat, ad forms. Every channel is somebody's job — which means it's nobody's job.</p></div>
+        </div>
+        <div class="pb-pt">
+          <div class="pb-ic" aria-hidden="true" id="pbi3"></div>
+          <div><h4>Speed decides the sale</h4><p>An implant enquiry is comparing three practices. The one that responds first usually wins — and the average practice takes over four minutes to pick up.</p></div>
+        </div>
+        <button class="btn b-sec" onclick="go('roi')">Calculate what it's costing you
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+      <div class="leak-card rv rv-d2" id="leakcard">
+        <div class="leak-hd">
+          <div class="leak-hd-t">Typical Private Practice · Per Month</div>
+          <span class="ldot" style="color:var(--red)"><span class="dw"><i></i><b></b></span></span>
+        </div>
+        <div class="leak-rows" id="leakrows"></div>
+        <div class="leak-total">
+          <div style="font-size:10px;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px">Annual revenue never recorded</div>
+          <div class="leak-total-n" id="leaktotal">£0</div>
+          <div style="font-size:12px;color:var(--dim);margin-top:10px;font-weight:300">Based on 320 enquiries a month, 80 missed, recovered at a £200 average patient value</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="sec" id="flow">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-c rv">The System</div>
+      <h2 class="sec-t rv rv-d1 serif">Enquiry to booked patient.<br><em class="g-cyan">In under sixty seconds.</em></h2>
+      <p class="sec-p rv rv-d2">Six steps. Every channel. Around the clock. Nobody on your team touches a thing.</p>
+    </div>
+    <div class="steps rv rv-d2" id="steps"><div class="steps-line" aria-hidden="true"></div></div>
+  </div>
+</section>
+
+<!-- ══ OMNICHANNEL ══ -->
+<section class="sec sec-alt" id="omni">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-g rv">Omnichannel</div>
+      <h2 class="sec-t rv rv-d1 serif">Every channel. One portal.<br><span class="g-gold">Nothing slips through.</span></h2>
+      <p class="sec-p rv rv-d2">Patients don't care which channel they use. Pulse AI captures all of them, applies the same standard to each, and routes everything into one place your team actually watches.</p>
+    </div>
+    <div class="omni">
+      <div class="ch-col rv" id="chcol"></div>
+      <div class="hub rv rv-d1">
+        <div class="hub-lb">Unified AI Layer</div>
+        <div class="hub-c"><img src="assets/logo.png" alt="Pulse AI Concierge"></div>
+        <div class="hub-note">Captured, qualified, prioritised and routed — in real time</div>
+      </div>
+      <div class="out-col rv rv-d2">
+        <div style="font-size:10px;font-weight:700;color:var(--faint);letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px">Delivered To</div>
+        <div class="out"><div class="out-dot" style="background:var(--green);box-shadow:0 0 8px var(--green)" aria-hidden="true"></div><div><div class="out-n">Practice Dashboard</div><div class="out-d">Live feed, values and status</div></div></div>
+        <div class="out"><div class="out-dot" style="background:var(--cyan);box-shadow:0 0 8px var(--cyan)" aria-hidden="true"></div><div><div class="out-n">Team Notifications</div><div class="out-d">Instant alerts with full context</div></div></div>
+        <div class="out"><div class="out-dot" style="background:var(--gold);box-shadow:0 0 8px var(--gold)" aria-hidden="true"></div><div><div class="out-n">Your PMS</div><div class="out-d">Patient record written automatically</div></div></div>
+        <div class="out"><div class="out-dot" style="background:var(--violet);box-shadow:0 0 8px var(--violet)" aria-hidden="true"></div><div><div class="out-n">The Patient</div><div class="out-d">Booking link or guide, within seconds</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ LIVE DEMO ══ -->
+<section class="sec" id="demo">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-c rv"><span class="ldot" style="color:var(--cyan)"><span class="dw"><i></i><b></b></span></span>Interactive</div>
+      <h2 class="sec-t rv rv-d1 serif">Don't take our word for it.<br><em class="g-cyan">Watch it work.</em></h2>
+      <p class="sec-p rv rv-d2">Pick a patient scenario. Fire the call. Watch Pulse AI capture, qualify and action the entire enquiry in real time.</p>
+    </div>
+    <div id="pillrow" style="display:none;margin-bottom:18px">
+      <div style="font-size:10px;font-weight:700;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:11px">Choose a scenario</div>
+      <div class="pills" id="pills"></div>
+    </div>
+    <div class="demo rv rv-d2">
+      <div class="d-sb" id="dsb"></div>
+      <div class="d-main" id="dmain"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ DASHBOARD ══ -->
+<section class="sec sec-alt" id="dash">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-g rv">Command Centre</div>
+      <h2 class="sec-t rv rv-d1 serif">Total visibility.<br><span class="g-gold">Zero admin.</span></h2>
+      <p class="sec-p rv rv-d2">Every enquiry, every channel, every estimated value — on one screen, updated the moment it happens. No spreadsheets. No chasing.</p>
+    </div>
+    <div class="dash rv rv-d2" id="dashcard"></div>
+  </div>
+</section>
+
+<!-- ══ RESULTS ══ -->
+<section class="sec" id="results">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-v rv">The Results</div>
+      <h2 class="sec-t rv rv-d1 serif">What changes when nothing<br><em class="g-cyan">gets missed.</em></h2>
+      <p class="sec-p rv rv-d2">Aggregate data across our practice base, first twelve weeks from go-live. The gap is the enquiries that were always there.</p>
+    </div>
+    <div class="gg">
+      <div class="gc rv">
+        <div class="gc-t">Enquiries Captured Per Week</div>
+        <div class="gc-s">Before vs after Pulse AI Concierge</div>
+        <div class="lg">
+          <div class="lg-i"><span class="lg-d" style="background:var(--dim)"></span>Before</div>
+          <div class="lg-i"><span class="lg-d" style="background:var(--cyan)"></span>With Pulse AI</div>
+        </div>
+        <div class="bars" id="bars"></div>
+        <div class="blbl" id="blbl"></div>
+        <div class="gnote"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><strong style="color:var(--green);font-weight:600">+340% average uplift</strong> in captured enquiries by week eight</span></div>
+      </div>
+      <div class="gc rv rv-d1">
+        <div class="gc-t">Monthly Revenue Recovered</div>
+        <div class="gc-s">Cumulative impact over twelve weeks</div>
+        <div class="lg">
+          <div class="lg-i"><span class="lg-d" style="background:var(--dim)"></span>Before</div>
+          <div class="lg-i"><span class="lg-d" style="background:var(--green)"></span>With Pulse AI</div>
+        </div>
+        <div class="lcw">
+          <svg viewBox="0 0 400 168" preserveAspectRatio="none" id="lsvg">
+            <defs>
+              <linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#00d9a0" stop-opacity=".55"/><stop offset="100%" stop-color="#00d9a0" stop-opacity="0"/></linearGradient>
+              <linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4a6885" stop-opacity=".4"/><stop offset="100%" stop-color="#4a6885" stop-opacity="0"/></linearGradient>
+            </defs>
+            <line x1="0" y1="42" x2="400" y2="42" stroke="rgba(0,200,232,.05)"/>
+            <line x1="0" y1="84" x2="400" y2="84" stroke="rgba(0,200,232,.05)"/>
+            <line x1="0" y1="126" x2="400" y2="126" stroke="rgba(0,200,232,.05)"/>
+            <polygon id="ab" points="0,154 36,152 72,150 108,148 144,146 180,145 216,144 252,143 288,142 324,141 360,140 400,139 400,168 0,168" fill="url(#gb)" opacity="0"/>
+            <polygon id="aa" points="0,154 36,143 72,128 108,111 144,93 180,75 216,58 252,45 288,35 324,27 360,21 400,17 400,168 0,168" fill="url(#ga)" opacity="0"/>
+            <polyline id="lb" points="0,154 36,152 72,150 108,148 144,146 180,145 216,144 252,143 288,142 324,141 360,140 400,139" fill="none" stroke="#4a6885" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+            <polyline id="la" points="0,154 36,143 72,128 108,111 144,93 180,75 216,58 252,45 288,35 324,27 360,21 400,17" fill="none" stroke="#00d9a0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1000" stroke-dashoffset="1000"/>
+            <text id="dl" x="396" y="11" text-anchor="end" font-family="JetBrains Mono" font-size="11" fill="#00d9a0" opacity="0">+£18,400/mo</text>
+          </svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:8px"><span style="font-size:9.5px;color:var(--faint)">Week 1</span><span style="font-size:9.5px;color:var(--faint)">Week 6</span><span style="font-size:9.5px;color:var(--faint)">Week 12</span></div>
+        <div class="gnote"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span><strong style="color:var(--green);font-weight:600">£14,200/month average</strong> recovered by week twelve</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ROI ══ -->
+<section class="sec sec-alt" id="roi">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-v rv">ROI Calculator</div>
+      <h2 class="sec-t rv rv-d1 serif">What is this costing you<br><span class="g-gold">right now?</span></h2>
+      <p class="sec-p rv rv-d2">Set the sliders to your practice. The number updates live.</p>
+    </div>
+    <div class="roi">
+      <div class="rc rv">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:28px">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)" aria-hidden="true"></span>
+          <span style="font-size:10px;font-weight:700;color:var(--faint);letter-spacing:.14em;text-transform:uppercase">Your practice</span>
+        </div>
+
+        <div class="slr">
+          <div class="sll"><span class="sl-name">Enquiries a week</span><span class="mono sl-val" style="color:var(--cyan)" id="L1">40</span></div>
+          <div class="sl-help">Calls, WhatsApps, DMs, ad forms and website chats — all of it, not just the phone.</div>
+          <div class="slw"><input type="range" id="S1" min="0" max="200" step="1" value="40" aria-label="Enquiries a week"></div>
+          <div class="slm"><span>0</span><span>200</span></div>
+        </div>
+
+        <div class="slr">
+          <div class="sll"><span class="sl-name">Number of missed enquiries</span><span class="mono sl-val" style="color:var(--amber)" id="L2">8 a week</span></div>
+          <div class="sl-help">Rings out, hits voicemail, or nobody replies. Count the evenings and weekends — that's where most of them go.</div>
+          <div class="slw"><input type="range" id="S2" min="0" max="100" step="1" value="8" aria-label="Number of missed enquiries a week"></div>
+          <div class="slm"><span>0</span><span id="S2max">40</span></div>
+        </div>
+
+        <div class="slr">
+          <div class="sll"><span class="sl-name">Your new patient consultation fee</span><span class="mono sl-val" style="color:var(--green)" id="L3">£90</span></div>
+          <div class="sl-help">Just the first appointment. Treatment is on top — more on that below.</div>
+          <div class="slw"><input type="range" id="S3" min="0" max="250" step="5" value="90" aria-label="New patient consultation fee"></div>
+          <div class="slm"><span>£0 (free consult)</span><span>£250</span></div>
+        </div>
+      </div>
+      <div class="rv rv-d1" id="rout"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PMS ══ -->
+<section class="sec" id="pms">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-c rv">Integration</div>
+      <h2 class="sec-t rv rv-d1 serif">It writes into the software<br><em class="g-cyan">you already run.</em></h2>
+      <p class="sec-p rv rv-d2">No migration. No rip-and-replace. No retraining your team on yet another platform.</p>
+    </div>
+    <div class="pms">
+      <div class="rv">
+        <div class="pflow">
+          <div class="pft">Data Flow</div>
+          <div class="pfr"><span class="parw" aria-hidden="true"></span><div class="pbox"><div class="pbn">Enquiry arrives</div><div class="pbd">Call, WhatsApp, DM, web chat or ad form</div></div></div>
+          <div class="pfr"><span class="parw" aria-hidden="true">↓</span><div class="pbox"><div class="pbn">AI qualifies &amp; summarises</div><div class="pbd">Treatment, urgency, value and preferences captured</div></div></div>
+          <div class="pfr"><span class="parw" aria-hidden="true">↓</span><div class="pbox"><div class="pbn">Written to your PMS</div><div class="pbd">Patient record created or updated in real time</div></div></div>
+          <div class="pfr"><span class="parw" aria-hidden="true">↓</span><div class="pbox" style="border-color:rgba(0,217,160,.28);background:rgba(0,217,160,.04)"><div class="pbn" style="color:var(--green)">Appointment booked</div><div class="pbd">Diary updated · patient confirmed · team notified</div></div></div>
+        </div>
+        <div style="font-size:10.5px;font-weight:700;color:var(--faint);letter-spacing:.14em;text-transform:uppercase;margin-bottom:14px">Compatible platforms</div>
+        <div class="plogos">
+          <div class="plg">Dentally</div><div class="plg">SOE / Exact</div><div class="plg">R4 Dental</div>
+          <div class="plg">Carestream</div><div class="plg">Kodak Dental</div><div class="plg">Custom API</div>
+        </div>
+      </div>
+      <div class="pcopy rv rv-d1">
+        <h3 class="serif">One system. Every patient. Nothing lost.</h3>
+        <p>Pulse AI Concierge sits in front of your existing practice management software, not on top of it. Every enquiry is logged, every record updated, every follow-up tracked — without a single manual entry from your team.</p>
+        <div class="ppt"><div class="ppi" aria-hidden="true" id="ppi1"></div><div><h4>Live in 48 hours</h4><p>Connected, configured and answering within two working days. No IT project. No downtime. No disruption to how your practice runs today.</p></div></div>
+        <div class="ppt"><div class="ppi" aria-hidden="true" id="ppi2"></div><div><h4>Bi-directional sync</h4><p>Enquiry data flows in. Availability, confirmations and patient records flow back. Both systems stay accurate without anyone reconciling them.</p></div></div>
+        <div class="ppt"><div class="ppi" aria-hidden="true" id="ppi3"></div><div><h4>UK GDPR compliant</h4><p>Patient data encrypted in transit and at rest, handled to UK GDPR and NHS data standards, with a full audit trail on every interaction.</p></div></div>
+        <div class="ppt" style="margin-bottom:30px"><div class="ppi" aria-hidden="true" id="ppi4"></div><div><h4>Your voice, your rules</h4><p>Tone, treatment criteria, pricing boundaries and escalation triggers are configured to your practice. It answers the way you would.</p></div></div>
+        <button class="btn b-pri" onclick="book()">Talk to us about your setup
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ -->
+<section class="sec sec-alt" id="features">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-c rv">The Detail</div>
+      <h2 class="sec-t rv rv-d1 serif">Everything your practice needs.<br><em class="g-cyan">Nothing it doesn't.</em></h2>
+    </div>
+    <div class="fg rv rv-d2" id="fg"></div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="sec" id="testi">
+  <div class="wrap-wide">
+    <div class="sec-hd">
+      <div class="eyebrow ey-g rv">Practice Owners</div>
+      <h2 class="sec-t rv rv-d1 serif">The numbers speak.<br><span class="g-gold">So do they.</span></h2>
+    </div>
+    <div class="tg rv rv-d2" id="tg"></div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="sec sec-alt" id="faq">
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="eyebrow ey-c rv">Straight Answers</div>
+      <h2 class="sec-t rv rv-d1 serif">The questions owners<br><em class="g-cyan">actually ask.</em></h2>
+    </div>
+    <div class="faq rv rv-d2" id="faqlist"></div>
+  </div>
+</section>
+
+<!-- ══ FINALE ══ -->
+<section id="fin">
+  <div class="f-glow" aria-hidden="true"></div>
+  <div style="position:relative;max-width:800px;margin:0 auto">
+    <img class="f-logo rv" src="assets/logo.png" alt="Pulse AI Concierge">
+    <h2 class="f-h rv rv-d1 serif">The enquiries are already there.<br><span class="g-gold">Start capturing them.</span></h2>
+    <p class="f-p rv rv-d2">Twenty minutes. We'll map your channels, model your numbers and show you exactly what Pulse AI would have captured last month — using your figures, not ours.</p>
+    <div class="f-cta rv rv-d2">
+      <button class="btn b-pri b-lg" onclick="book()" style="box-shadow:0 0 60px rgba(0,200,232,.34)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Book Your Demo
+      </button>
+      <button class="btn b-sec b-lg" onclick="go('roi')">Run The Numbers First</button>
+    </div>
+    <p class="f-fine rv rv-d3">No obligation · 20 minutes · Modelled on your practice</p>
+  </div>
+</section>
+
+
+<!-- ══ BOOKING MODAL ══ -->
+<div id="bk" role="dialog" aria-modal="true" aria-labelledby="bk-ttl">
+  <div id="bk-bd" onclick="closeBk()"></div>
+  <div id="bk-panel">
+    <div id="bk-hd">
+      <div style="display:flex;align-items:center;gap:14px;min-width:0">
+        <img src="assets/logo.png" alt="">
+        <div style="min-width:0">
+          <div id="bk-ttl">Book Your Demo</div>
+          <div id="bk-sub">20 minutes · modelled on your practice</div>
+        </div>
+      </div>
+      <button id="bk-x" onclick="closeBk()" aria-label="Close">×</button>
+    </div>
+    <div id="bk-body">
+      <div id="bk-load"><div id="bk-spin"></div><div style="font-size:12px;color:var(--faint)">Loading your booking calendar…</div></div>
+      <div id="bk-mount"></div>
+    </div>
+    <div id="bk-trust">
+      <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d9a0" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>No obligation</span>
+      <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d9a0" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>20 minutes</span>
+      <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00d9a0" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Your numbers, not ours</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer id="foot">
+  <div class="ft-in">
+    <div class="ft-b">
+      <img class="ft-logo" src="assets/logo.png" alt="Pulse AI Concierge">
+      <p>AI enquiry infrastructure for private dental practices. Every channel captured. Every patient answered. Every record written.</p>
+    </div>
+    <div class="ft-c">
+      <h4>Product</h4>
+      <a onclick="go('flow')">How It Works</a>
+      <a onclick="go('demo')">Live Demo</a>
+      <a onclick="go('omni')">Channels</a>
+      <a onclick="go('roi')">ROI Calculator</a>
+      <a onclick="go('pms')">PMS Integration</a>
+    </div>
+    <div class="ft-c">
+      <h4>Company</h4>
+      <a onclick="book()">About</a>
+      <a onclick="go('testi')">Case Studies</a>
+      <a onclick="book()">Pricing</a>
+      <a onclick="book()">Contact</a>
+    </div>
+    <div class="ft-c">
+      <h4>Get Started</h4>
+      <a onclick="book()">Book A Demo</a>
+      <a onclick="go('faq')">FAQ</a>
+      <a onclick="book()">Privacy Policy</a>
+      <a onclick="book()">Terms of Service</a>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2025 Pulse AI Concierge · Artificial Intelligence Solutions &amp; Services Ltd · All rights reserved.</p>
+    <p>pulse-ai.services</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
