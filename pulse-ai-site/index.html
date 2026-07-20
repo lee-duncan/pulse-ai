@@ -41,7 +41,7 @@
   </div>
   <div class="nav-rt">
     <div class="nav-live ldot"><span class="dw"><i></i><b></b></span><s>Live</s></div>
-    <button class="btn b-pri b-sm" onclick="book()">Book A Demo</button>
+    <button class="btn b-pri b-sm" onclick="openDemoModal()">Book A Demo</button>
     <button class="burger" id="burger" onclick="openM()" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -55,7 +55,7 @@
   <a href="#" onclick="go('results');closeM();return false;">Results</a>
   <a href="#" onclick="go('roi');closeM();return false;">ROI Calculator</a>
   <a href="#" onclick="go('pms');closeM();return false;">PMS Integration</a>
-  <button class="btn b-pri b-lg" style="margin-top:10px" onclick="book();closeM()">Book A Demo</button>
+  <button class="btn b-pri b-lg" style="margin-top:10px" onclick="openDemoModal();closeM()">Book A Demo</button>
 </div>
 
 <!-- ══ HERO ══ -->
@@ -68,7 +68,7 @@
     <h1 class="h1 rv rv-d1 serif">Your practice isn't losing patients.<br><em class="g-cyan">It's losing enquiries.</em></h1>
     <p class="h-sub rv rv-d2">Pulse AI Concierge answers every call, message, DM and form — across every channel, at any hour — qualifies the patient, and writes it straight into your practice management software. Before your front desk has even looked up.</p>
     <div class="h-cta rv rv-d2">
-      <button class="btn b-pri b-lg" onclick="book()">
+      <button class="btn b-pri b-lg" onclick="openDemoModal()">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         Book A Demo
       </button>
@@ -428,6 +428,39 @@
   </div>
 </div>
 
+<!-- ══ DEMO FORM MODAL ══ -->
+<div id="dm" class="dm" role="dialog" aria-modal="true" aria-labelledby="dm-ttl" aria-describedby="dm-sub" aria-hidden="true">
+  <div class="dm-bd" onclick="closeDemoModal()"></div>
+  <div class="dm-panel">
+    <div class="dm-hd">
+      <div class="dm-hd-txt">
+        <div id="dm-ttl" class="dm-ttl serif">Book Your Pulse AI Demo</div>
+        <div id="dm-sub" class="dm-sub">Complete the short form below and we&rsquo;ll arrange a focused demonstration around your practice and current enquiry process.</div>
+      </div>
+      <button id="dm-x" class="dm-x" onclick="closeDemoModal()" aria-label="Close demo booking form">×</button>
+    </div>
+    <div class="dm-body">
+      <iframe
+          src="https://bot.ai-solutions.services/widget/form/rtdRG4kQxOTR70xVzGRw"
+          style="width:100%;height:100%;border:none;border-radius:3px"
+          id="inline-rtdRG4kQxOTR70xVzGRw"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Pulse AI - Ad Form"
+          data-height="undefined"
+          data-layout-iframe-id="inline-rtdRG4kQxOTR70xVzGRw"
+          data-form-id="rtdRG4kQxOTR70xVzGRw"
+          title="Pulse AI - Ad Form">
+      </iframe>
+    </div>
+  </div>
+</div>
+
 <!-- ══ FOOTER ══ -->
 <footer id="foot">
   <div class="ft-in">
@@ -452,7 +485,7 @@
     </div>
     <div class="ft-c">
       <h4>Get Started</h4>
-      <a onclick="book()">Book A Demo</a>
+      <a onclick="openDemoModal()">Book A Demo</a>
       <a onclick="go('faq')">FAQ</a>
       <a onclick="book()">Privacy Policy</a>
       <a onclick="book()">Terms of Service</a>
@@ -464,6 +497,7 @@
   </div>
 </footer>
 
+<script src="https://bot.ai-solutions.services/js/form_embed.js" async></script>
 <script src="script.js" defer></script>
 </body>
 </html>

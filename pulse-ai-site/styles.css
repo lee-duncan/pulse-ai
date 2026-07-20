@@ -461,6 +461,37 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
   #bk-trust{gap:12px;padding:12px 20px;}
 }
 
+/* ════════ DEMO FORM MODAL ════════
+   Centred with auto margins (not align-items:center) so that if the
+   panel is ever taller than the viewport, the whole modal scrolls
+   instead of clipping — no "unreachable top" flexbox-centering bug. */
+.dm{position:fixed;inset:0;z-index:9700;display:flex;padding:24px;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .35s var(--ease),visibility 0s linear .35s;}
+.dm.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .35s var(--ease),visibility 0s linear 0s;}
+.dm-bd{position:fixed;inset:0;background:rgba(1,4,8,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.dm-panel{position:relative;margin:auto;width:100%;max-width:560px;background:linear-gradient(165deg,var(--ink3),var(--ink2));
+  border:1px solid var(--line2);border-radius:var(--r-xl);box-shadow:0 0 90px rgba(0,200,232,.14),0 50px 90px -20px rgba(0,0,0,.8);
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:translateY(22px) scale(.97);transition:transform .4s var(--ease);}
+.dm.open .dm-panel{transform:none;}
+.dm-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:26px 28px 20px;border-bottom:1px solid var(--line);flex-shrink:0;background:rgba(2,6,12,.5);}
+.dm-hd-txt{min-width:0;}
+.dm-ttl{font-size:22px;font-weight:600;color:#fff;line-height:1.25;}
+.dm-sub{font-size:13px;color:var(--body);line-height:1.65;margin-top:9px;font-weight:300;max-width:440px;}
+.dm-x{background:none;border:1px solid var(--line);border-radius:50%;width:34px;height:34px;color:var(--dim);font-size:20px;cursor:pointer;line-height:1;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s;}
+.dm-x:hover{color:#fff;border-color:var(--line3);background:rgba(0,200,232,.07);transform:rotate(90deg);}
+.dm-body{flex:1 1 auto;height:clamp(680px,78vh,720px);overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.dm-body iframe{width:100%;height:100%;border:none;display:block;background:transparent;}
+@media(max-width:640px){
+  .dm{padding:8px;}
+  .dm-panel{max-width:100%;border-radius:var(--r-lg);}
+  .dm-hd{padding:18px 18px 14px;}
+  .dm-ttl{font-size:19px;}
+  .dm-sub{font-size:12px;margin-top:7px;}
+  .dm-body{height:calc(100vh - 180px);}
+}
+
 /* ════════ RESPONSIVE ════════ */
 @media(max-width:1080px){
   .pb-grid{gap:52px;}

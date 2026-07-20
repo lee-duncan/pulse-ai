@@ -101,12 +101,20 @@ var CAL={
 
 /* ════ UTILS ════ */
 function go(id){var e=document.getElementById(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}
+
+/* Shared scroll lock — counted, so one modal closing never re-enables
+   scroll while another (e.g. the mobile menu closing itself on the way
+   to opening the demo modal) is still meant to be open. */
+var _scrollLockCount=0;
+function lockScroll(){ if(_scrollLockCount===0)document.body.style.overflow='hidden'; _scrollLockCount++; }
+function unlockScroll(){ _scrollLockCount=Math.max(0,_scrollLockCount-1); if(_scrollLockCount===0)document.body.style.overflow=''; }
+
 var _bkLoaded=false, _lastFocus=null;
 function book(){
   var m=document.getElementById('bk');
   _lastFocus=document.activeElement;
   m.classList.add('open');
-  document.body.style.overflow='hidden';
+  lockScroll();
   if(!_bkLoaded){ mountBk(); _bkLoaded=true; }
   setTimeout(function(){var x=document.getElementById('bk-x'); if(x)x.focus();},420);
   if(window.gtag)gtag('event','booking_modal_open');
@@ -114,9 +122,32 @@ function book(){
 }
 function closeBk(){
   var m=document.getElementById('bk');
+  if(!m.classList.contains('open'))return;
   m.classList.remove('open');
-  document.body.style.overflow='';
+  unlockScroll();
   if(_lastFocus&&_lastFocus.focus)_lastFocus.focus();
+}
+
+/* ════ DEMO FORM MODAL ════ */
+var _dmLastFocus=null;
+function openDemoModal(){
+  var m=document.getElementById('dm');
+  if(!m||m.classList.contains('open'))return;
+  _dmLastFocus=document.activeElement;
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  lockScroll();
+  setTimeout(function(){var x=document.getElementById('dm-x'); if(x)x.focus();},380);
+  if(window.gtag)gtag('event','demo_modal_open');
+  if(window.fbq)fbq('track','Lead');
+}
+function closeDemoModal(){
+  var m=document.getElementById('dm');
+  if(!m||!m.classList.contains('open'))return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+  unlockScroll();
+  if(_dmLastFocus&&_dmLastFocus.focus)_dmLastFocus.focus();
 }
 function mountBk(){
   var mt=document.getElementById('bk-mount'), ld=document.getElementById('bk-load');
@@ -142,8 +173,8 @@ function mountBk(){
       +'<button class="btn b-pri" onclick="window.open(URL_BOOK,\'_blank\',\'noopener\')">Continue to pulse-ai.services</button></div>';
   }
 }
-function openM(){document.getElementById('mm').classList.add('open');document.body.style.overflow='hidden';}
-function closeM(){document.getElementById('mm').classList.remove('open');document.body.style.overflow='';}
+function openM(){document.getElementById('mm').classList.add('open');lockScroll();}
+function closeM(){var m=document.getElementById('mm');if(!m.classList.contains('open'))return;m.classList.remove('open');unlockScroll();}
 function tick(c,s){s=s||10;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';}
 function dot(c,l){return '<span class="ldot" style="color:'+c+'"><span class="dw"><i></i><b></b></span>'+(l?'<s>'+l+'</s>':'')+'</span>';}
 function wave(n,c,on){var h='<span style="display:inline-flex;align-items:center;gap:3px;height:22px" aria-hidden="true">';for(var i=0;i<n;i++){h+='<span style="display:block;width:3px;min-height:4px;border-radius:2px;background:'+(on?c:'#2c4257')+';'+(on?'animation:wave '+(0.55+(i%4)*0.15)+'s ease-in-out '+(i*0.06)+'s infinite alternate':'height:4px')+'"></span>';}return h+'</span>';}
@@ -153,7 +184,7 @@ function money(n){return '£'+Math.round(n).toLocaleString('en-GB');}
 window.addEventListener('scroll',function(){
   document.getElementById('nav').classList.toggle('solid',window.scrollY>50);
 },{passive:true});
-document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeM();closeBk();}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeM();closeBk();closeDemoModal();}});
 
 /* ════ REVEAL ════ */
 var rvo=new IntersectionObserver(function(es){
@@ -556,7 +587,7 @@ var TREAT_VAL  = 1200;   // average treatment plan value   (tune these two freel
         : 'That\'s <strong>'+n(patYr)+' new patients a year</strong> you never met. The consultation fee is only the door.')
       +' If just a third accept an average '+money(TREAT_VAL)+' treatment plan, that\'s <em>'+money(patYr*TREAT_RATE*TREAT_VAL)+'</em> more — and this calculator counts none of it.</p></div>'
 
-      +'<button class="btn b-pri b-full" style="margin-top:14px;padding:17px" onclick="book()">'
+      +'<button class="btn b-pri b-full" style="margin-top:14px;padding:17px" onclick="openDemoModal()">'
       +'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>'
       +'Book A Demo — Model This On My Practice</button>'
       +'<p class="rnote">Recovery rate based on aggregate performance across our practice base. Your demo uses your real figures, not these.</p>';
