@@ -462,19 +462,22 @@ input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;bac
 }
 
 /* ════════ DEMO FORM MODAL ════════
+   Hidden via display:none by default (same proven pattern as #mm and
+   #bk) rather than opacity/visibility/pointer-events — a display:none
+   element has zero layout box and can never intercept a click, full
+   stop, with no dependency on pointer-events cascading correctly.
    Centred with auto margins (not align-items:center) so that if the
    panel is ever taller than the viewport, the whole modal scrolls
    instead of clipping — no "unreachable top" flexbox-centering bug. */
-.dm{position:fixed;inset:0;z-index:9700;display:flex;padding:24px;overflow-y:auto;-webkit-overflow-scrolling:touch;
-  opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity .35s var(--ease),visibility 0s linear .35s;}
-.dm.open{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .35s var(--ease),visibility 0s linear 0s;}
-.dm-bd{position:fixed;inset:0;background:rgba(1,4,8,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+.dm{position:fixed;inset:0;z-index:9700;display:none;padding:24px;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.dm.open{display:flex;}
+.dm-bd{position:fixed;inset:0;background:rgba(1,4,8,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);opacity:0;transition:opacity .35s var(--ease);}
+.dm.open .dm-bd{opacity:1;}
 .dm-panel{position:relative;margin:auto;width:100%;max-width:560px;background:linear-gradient(165deg,var(--ink3),var(--ink2));
   border:1px solid var(--line2);border-radius:var(--r-xl);box-shadow:0 0 90px rgba(0,200,232,.14),0 50px 90px -20px rgba(0,0,0,.8);
   display:flex;flex-direction:column;overflow:hidden;
-  transform:translateY(22px) scale(.97);transition:transform .4s var(--ease);}
-.dm.open .dm-panel{transform:none;}
+  transform:translateY(22px) scale(.97);opacity:0;transition:transform .4s var(--ease),opacity .3s var(--ease);}
+.dm.open .dm-panel{transform:none;opacity:1;}
 .dm-hd{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:26px 28px 20px;border-bottom:1px solid var(--line);flex-shrink:0;background:rgba(2,6,12,.5);}
 .dm-hd-txt{min-width:0;}
 .dm-ttl{font-size:22px;font-weight:600;color:#fff;line-height:1.25;}

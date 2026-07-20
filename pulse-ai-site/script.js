@@ -102,6 +102,22 @@ var CAL={
 /* ════ UTILS ════ */
 function go(id){var e=document.getElementById(id);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});}
 
+/* Repeatable smooth scroll for any plain internal anchor link
+   (href="#some-id"). Attached per-element, once, at load — not
+   delegated on document, so it can never intercept clicks meant for
+   anything else, and nothing here ever stops propagation or prevents
+   default outside of the anchor's own default jump. */
+document.querySelectorAll('a[href^="#"]').forEach(function(link){
+  link.addEventListener('click', function(event){
+    var targetId = this.getAttribute('href');
+    if (!targetId || targetId === '#') return;
+    var target = document.querySelector(targetId);
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
 /* Shared scroll lock — counted, so one modal closing never re-enables
    scroll while another (e.g. the mobile menu closing itself on the way
    to opening the demo modal) is still meant to be open. */
@@ -112,6 +128,7 @@ function unlockScroll(){ _scrollLockCount=Math.max(0,_scrollLockCount-1); if(_sc
 var _bkLoaded=false, _lastFocus=null;
 function book(){
   var m=document.getElementById('bk');
+  if(m.classList.contains('open'))return;
   _lastFocus=document.activeElement;
   m.classList.add('open');
   lockScroll();
@@ -143,7 +160,7 @@ function openDemoModal(){
   if(_dmOpen)return;
   _dmOpen=true;
   _dmLastFocus=document.activeElement;
-  m.style.display='';m.style.opacity='';m.style.visibility='';m.style.pointerEvents='';
+  m.style.display='';
   m.classList.add('open');
   m.setAttribute('aria-hidden','false');
   lockScroll();
@@ -163,7 +180,7 @@ function closeDemoModal(){
   _dmOpen=false;
   m.classList.remove('open');
   m.setAttribute('aria-hidden','true');
-  m.style.display='';m.style.opacity='';m.style.visibility='';m.style.pointerEvents='';
+  m.style.display='';
   unlockScroll();
   var toFocus=_dmLastFocus;
   _dmLastFocus=null;
@@ -193,7 +210,7 @@ function mountBk(){
       +'<button class="btn b-pri" onclick="window.open(URL_BOOK,\'_blank\',\'noopener\')">Continue to pulse-ai.services</button></div>';
   }
 }
-function openM(){document.getElementById('mm').classList.add('open');lockScroll();}
+function openM(){var m=document.getElementById('mm');if(m.classList.contains('open'))return;m.classList.add('open');lockScroll();}
 function closeM(){var m=document.getElementById('mm');if(!m.classList.contains('open'))return;m.classList.remove('open');unlockScroll();}
 function tick(c,s){s=s||10;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';}
 function dot(c,l){return '<span class="ldot" style="color:'+c+'"><span class="dw"><i></i><b></b></span>'+(l?'<s>'+l+'</s>':'')+'</span>';}
