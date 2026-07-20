@@ -128,26 +128,46 @@ function closeBk(){
   if(_lastFocus&&_lastFocus.focus)_lastFocus.focus();
 }
 
-/* ════ DEMO FORM MODAL ════ */
-var _dmLastFocus=null;
+/* ════ DEMO FORM MODAL ════
+   _dmOpen is the single source of truth for open/closed — open/close
+   never trust classList state alone, so the modal can't get stuck
+   thinking it's already open (or already closed) and silently ignore
+   the next call. Pending focus/cleanup timers are tracked and always
+   cleared before use so a fast close-then-reopen (or reopen-then-close)
+   can never leave a stale timer overwriting the newer state. */
+var _dmOpen=false, _dmLastFocus=null, _dmFocusTimer=null;
 function openDemoModal(){
   var m=document.getElementById('dm');
-  if(!m||m.classList.contains('open'))return;
+  if(!m)return;
+  if(_dmFocusTimer){clearTimeout(_dmFocusTimer);_dmFocusTimer=null;}
+  if(_dmOpen)return;
+  _dmOpen=true;
   _dmLastFocus=document.activeElement;
+  m.style.display='';m.style.opacity='';m.style.visibility='';m.style.pointerEvents='';
   m.classList.add('open');
   m.setAttribute('aria-hidden','false');
   lockScroll();
-  setTimeout(function(){var x=document.getElementById('dm-x'); if(x)x.focus();},380);
+  _dmFocusTimer=setTimeout(function(){
+    _dmFocusTimer=null;
+    var x=document.getElementById('dm-x');
+    if(x)x.focus();
+  },380);
   if(window.gtag)gtag('event','demo_modal_open');
   if(window.fbq)fbq('track','Lead');
 }
 function closeDemoModal(){
   var m=document.getElementById('dm');
-  if(!m||!m.classList.contains('open'))return;
+  if(!m)return;
+  if(_dmFocusTimer){clearTimeout(_dmFocusTimer);_dmFocusTimer=null;}
+  if(!_dmOpen)return;
+  _dmOpen=false;
   m.classList.remove('open');
   m.setAttribute('aria-hidden','true');
+  m.style.display='';m.style.opacity='';m.style.visibility='';m.style.pointerEvents='';
   unlockScroll();
-  if(_dmLastFocus&&_dmLastFocus.focus)_dmLastFocus.focus();
+  var toFocus=_dmLastFocus;
+  _dmLastFocus=null;
+  if(toFocus&&toFocus.focus)toFocus.focus();
 }
 function mountBk(){
   var mt=document.getElementById('bk-mount'), ld=document.getElementById('bk-load');
