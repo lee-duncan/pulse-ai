@@ -137,6 +137,7 @@ section{position:relative;}
 .h-stat:last-child{border-right:none;padding-right:0;}
 @media(min-width:961px){
   #hero>.wrap-wide{max-width:1120px;}
+  .h1{font-size:clamp(46px,6.2vw,90px);}
 }
 .st-n{font-family:'JetBrains Mono',monospace;font-size:clamp(26px,3.3vw,42px);font-weight:400;line-height:1;color:#fff;letter-spacing:-.02em;}
 .st-l{font-size:12px;color:var(--dim);margin-top:9px;font-weight:500;}
