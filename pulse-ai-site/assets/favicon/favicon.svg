@@ -1,16 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <path d="M6 50 L21 50 C26 50 27 50 31 38 C33.5 31 35.5 31 38 38 C40.5 45 41 45 43 50
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+    </filter>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1A4A80"/>
+      <stop offset="100%" stop-color="#0B2444"/>
+    </linearGradient>
+  </defs>
+  <path id="wave" d="M6 50 L21 50 C26 50 27 50 31 38 C33.5 31 35.5 31 38 38 C40.5 45 41 45 43 50
            L46 50
            C48 50 49 58 51 66 C52.5 72 53.5 76 55 76 C56.5 76 57.5 68 59 58
            C61 45 62 32 65 20 C66.5 14 67.5 13 68 13 C68.5 13 69.5 17 71 26
            C72.5 35 73.5 44 75 50
-           L94 50"
-        fill="none" stroke="#02060C" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M6 50 L21 50 C26 50 27 50 31 38 C33.5 31 35.5 31 38 38 C40.5 45 41 45 43 50
-           L46 50
-           C48 50 49 58 51 66 C52.5 72 53.5 76 55 76 C56.5 76 57.5 68 59 58
-           C61 45 62 32 65 20 C66.5 14 67.5 13 68 13 C68.5 13 69.5 17 71 26
-           C72.5 35 73.5 44 75 50
-           L94 50"
-        fill="none" stroke="#00C8E8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+           L94 50" fill="none"/>
+
+  <use href="#wave" stroke="#4FC7EE" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity="0.45" filter="url(#glow)"/>
+  <use href="#wave" stroke="#6FD4F2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+  <use href="#wave" stroke="url(#navyGrad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
