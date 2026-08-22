@@ -63,9 +63,7 @@ module.exports = async function handler(req, res) {
     timestamp_ms: Date.now(),
     source_url: SOURCE_URL,
     action_source: 'web',
-    data: { type: 'customer_action' },
-    // Testing stage only — flip to false once OpenAI confirms events validate.
-    validate_only: true
+    data: { type: 'customer_action' }
   };
 
   // Email is hashed server-side; the raw address is never sent onward,
@@ -81,6 +79,15 @@ module.exports = async function handler(req, res) {
     event.oppref = oppref;
   }
 
+  // contact_id is kept for our own logging/response only — it is not part
+  // of the OpenAI event schema, so it is deliberately not attached here.
+
+  const payload = {
+    // Testing stage only — flip to false once OpenAI confirms events validate.
+    validate_only: true,
+    events: [event]
+  };
+
   let openaiStatus = null;
   let openaiBody = null;
 
@@ -91,7 +98,7 @@ module.exports = async function handler(req, res) {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + apiKey
       },
-      body: JSON.stringify(event)
+      body: JSON.stringify(payload)
     });
 
     openaiStatus = openaiRes.status;
