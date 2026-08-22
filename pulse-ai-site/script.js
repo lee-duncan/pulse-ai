@@ -210,6 +210,18 @@ function mountBk(){
       +'<button class="btn b-pri" onclick="window.open(URL_BOOK,\'_blank\',\'noopener\')">Continue to pulse-ai.services</button></div>';
   }
 }
+/* ════ TEMP DIAGNOSTIC — GHL postMessage payload logger ════
+   Purpose: discover the exact event.data shape GHL sends after a
+   successful "Pulse AI - Ad Form" submission, so the real lead_created
+   pixel event can be wired to the correct condition.
+   Logs only — fires no pixel, changes no behaviour. Safe to delete this
+   whole block (and only this block) once the payload is confirmed. */
+window.addEventListener('message', function(e){
+  if(e.origin !== 'https://bot.ai-solutions.services') return;
+  console.log('[GHL-DIAGNOSTIC] postMessage from', e.origin, '— event.data:', e.data);
+});
+/* ════ END TEMP DIAGNOSTIC ════ */
+
 function openM(){var m=document.getElementById('mm');if(m.classList.contains('open'))return;m.classList.add('open');lockScroll();}
 function closeM(){var m=document.getElementById('mm');if(!m.classList.contains('open'))return;m.classList.remove('open');unlockScroll();}
 function tick(c,s){s=s||10;return '<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="'+c+'" stroke-width="3" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';}
