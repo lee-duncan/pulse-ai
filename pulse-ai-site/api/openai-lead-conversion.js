@@ -9,8 +9,8 @@
 // control (no CORS is needed — this is called server-to-server by GHL,
 // never from the browser).
 //
-// Currently sends validate_only:true on every event. Do not flip this to
-// false until OpenAI has confirmed the validation event is accepted.
+// validate_only is false — OpenAI validated a test event successfully,
+// so events sent from here now count as real conversions.
 
 const crypto = require('crypto');
 
@@ -26,28 +26,7 @@ module.exports = async function handler(req, res) {
   const expectedSecret = process.env.GHL_WEBHOOK_SECRET;
   const providedSecret = req.headers['x-ghl-webhook-secret'];
   if (!expectedSecret || !providedSecret || providedSecret !== expectedSecret) {
-    // ═══ TEMP DIAGNOSTIC — safe to remove once the 401 is resolved ═══
-    // Never returns either secret. Only presence/length/a truncated
-    // (8-char) SHA-256 fingerprint of each value, so we can tell whether
-    // GHL is sending the header at all and, if so, whether its value
-    // matches the configured secret — without exposing either one.
-    const fingerprint = function (val) {
-      return typeof val === 'string' && val.length > 0
-        ? crypto.createHash('sha256').update(val).digest('hex').slice(0, 8)
-        : null;
-    };
-    return res.status(401).json({
-      ok: false,
-      error: 'unauthorized',
-      diagnostics: {
-        header_received: typeof providedSecret === 'string' && providedSecret.length > 0,
-        received_length: typeof providedSecret === 'string' ? providedSecret.length : 0,
-        expected_length: typeof expectedSecret === 'string' ? expectedSecret.length : 0,
-        received_fingerprint: fingerprint(providedSecret),
-        expected_fingerprint: fingerprint(expectedSecret)
-      }
-    });
-    // ═══ END TEMP DIAGNOSTIC ═══
+    return res.status(401).json({ ok: false, error: 'unauthorized' });
   }
 
   let body = req.body;
@@ -104,8 +83,7 @@ module.exports = async function handler(req, res) {
   // of the OpenAI event schema, so it is deliberately not attached here.
 
   const payload = {
-    // Testing stage only — flip to false once OpenAI confirms events validate.
-    validate_only: true,
+    validate_only: false,
     events: [event]
   };
 
@@ -151,7 +129,7 @@ module.exports = async function handler(req, res) {
     ok: accepted,
     event_id: eventId,
     contact_id: contactId,
-    validate_only: true,
+    validate_only: false,
     openai_status: openaiStatus,
     openai_response: openaiBody
   });
