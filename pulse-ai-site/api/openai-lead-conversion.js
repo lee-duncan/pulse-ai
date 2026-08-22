@@ -26,7 +26,28 @@ module.exports = async function handler(req, res) {
   const expectedSecret = process.env.GHL_WEBHOOK_SECRET;
   const providedSecret = req.headers['x-ghl-webhook-secret'];
   if (!expectedSecret || !providedSecret || providedSecret !== expectedSecret) {
-    return res.status(401).json({ ok: false, error: 'unauthorized' });
+    // ═══ TEMP DIAGNOSTIC — safe to remove once the 401 is resolved ═══
+    // Never returns either secret. Only presence/length/a truncated
+    // (8-char) SHA-256 fingerprint of each value, so we can tell whether
+    // GHL is sending the header at all and, if so, whether its value
+    // matches the configured secret — without exposing either one.
+    const fingerprint = function (val) {
+      return typeof val === 'string' && val.length > 0
+        ? crypto.createHash('sha256').update(val).digest('hex').slice(0, 8)
+        : null;
+    };
+    return res.status(401).json({
+      ok: false,
+      error: 'unauthorized',
+      diagnostics: {
+        header_received: typeof providedSecret === 'string' && providedSecret.length > 0,
+        received_length: typeof providedSecret === 'string' ? providedSecret.length : 0,
+        expected_length: typeof expectedSecret === 'string' ? expectedSecret.length : 0,
+        received_fingerprint: fingerprint(providedSecret),
+        expected_fingerprint: fingerprint(expectedSecret)
+      }
+    });
+    // ═══ END TEMP DIAGNOSTIC ═══
   }
 
   let body = req.body;
