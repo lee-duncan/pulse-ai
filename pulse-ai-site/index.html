@@ -167,12 +167,12 @@
 <div id="mm" role="dialog" aria-modal="true" aria-label="Menu">
   <button class="x" onclick="closeM()" aria-label="Close menu">×</button>
   <img src="assets/logo.png" alt="Pulse AI Concierge">
-  <a href="#" onclick="go('problem');closeM();return false;">The Problem</a>
-  <a href="#" onclick="go('flow');closeM();return false;">How It Works</a>
-  <a href="#" onclick="go('demo');closeM();return false;">Live Demo</a>
-  <a href="#" onclick="go('results');closeM();return false;">Results</a>
-  <a href="#" onclick="go('roi');closeM();return false;">ROI Calculator</a>
-  <a href="#" onclick="go('pms');closeM();return false;">PMS Integration</a>
+  <a href="#problem" onclick="go('problem');closeM();return false;">The Problem</a>
+  <a href="#flow" onclick="go('flow');closeM();return false;">How It Works</a>
+  <a href="#demo" onclick="go('demo');closeM();return false;">Live Demo</a>
+  <a href="#results" onclick="go('results');closeM();return false;">Results</a>
+  <a href="#roi" onclick="go('roi');closeM();return false;">ROI Calculator</a>
+  <a href="#pms" onclick="go('pms');closeM();return false;">PMS Integration</a>
   <button class="btn b-pri b-lg" style="margin-top:10px" onclick="openDemoModal();closeM()">Book A Demo</button>
 </div>
 
@@ -294,7 +294,7 @@
       <div class="ch-col rv" id="chcol"></div>
       <div class="hub rv rv-d1">
         <div class="hub-lb">Unified AI Layer</div>
-        <div class="hub-c"><img src="assets/logo.png" alt="Pulse AI Concierge"></div>
+        <div class="hub-c"><img src="assets/logo.png" alt="Pulse AI unified enquiry layer"></div>
         <div class="hub-note">Captured, qualified, prioritised and routed — in real time</div>
       </div>
       <div class="out-col rv rv-d2">
@@ -588,23 +588,23 @@
     </div>
     <div class="ft-c">
       <h4>Product</h4>
-      <a onclick="go('flow')">How It Works</a>
-      <a onclick="go('demo')">Live Demo</a>
-      <a onclick="go('omni')">Channels</a>
-      <a onclick="go('roi')">ROI Calculator</a>
-      <a onclick="go('pms')">PMS Integration</a>
+      <a href="#flow" onclick="go('flow')">How It Works</a>
+      <a href="#demo" onclick="go('demo')">Live Demo</a>
+      <a href="#omni" onclick="go('omni')">Channels</a>
+      <a href="#roi" onclick="go('roi')">ROI Calculator</a>
+      <a href="#pms" onclick="go('pms')">PMS Integration</a>
     </div>
     <div class="ft-c">
       <h4>Company</h4>
       <a onclick="book()">About</a>
-      <a onclick="go('testi')">Case Studies</a>
+      <a href="#testi" onclick="go('testi')">Case Studies</a>
       <a onclick="book()">Pricing</a>
       <a onclick="book()">Contact</a>
     </div>
     <div class="ft-c">
       <h4>Get Started</h4>
       <a onclick="openDemoModal()">Book A Demo</a>
-      <a onclick="go('faq')">FAQ</a>
+      <a href="#faq" onclick="go('faq')">FAQ</a>
       <a onclick="book()">Privacy Policy</a>
       <a onclick="book()">Terms of Service</a>
     </div>
