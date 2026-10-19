@@ -680,20 +680,6 @@ var TREAT_VAL  = 1200;   // average treatment plan value   (tune these two freel
     return '<div class="fc"><div class="fi" aria-hidden="true">'+icon(f.i,26,'#00c8e8')+'</div><h3 class="ft serif">'+f.t+'</h3><p class="fb">'+f.b+'</p></div>';}).join('');
 })();
 
-/* ════ TESTIMONIALS ════ */
-(function(){
-  var T=[
-   {q:'We tracked it for a fortnight and found we had missed thirty-one calls. Not voicemails — calls that just rang out. Pulse AI answers every one of them now. Fourteen extra consultations in the first month.',n:'Dr. Claire Sutton',r:'Principal, Westbrook Dental',m:'+£31,400 in month one',av:'CS',c:'#00c9a7'},
-   {q:'I have installed a lot of systems over the years and most create more work than they remove. This one genuinely removed work. My front desk got their day back and our conversion went up at the same time.',n:'Dr. Arjun Mehta',r:'Owner, The Dental Suite London',m:'Paid for itself in 9 days',av:'AM',c:'#4da8f0'},
-   {q:'I was the sceptic. Then I watched it handle a live implant enquiry — captured everything, sent the guide, logged it in Dentally before I had finished my coffee. We signed that afternoon.',n:'Dr. Sarah Okafor',r:'Director, Pearl Dental Group',m:'3 practices, live in 48 hours',av:'SO',c:'#8b72f0'}
-  ];
-  document.getElementById('tg').innerHTML=T.map(function(t){
-    return '<div class="tc"><div class="ts">★★★★★</div><blockquote class="tq">“'+t.q+'”</blockquote>'
-    +'<div class="ta"><span class="tav" style="background:'+t.c+'20;border:1.5px solid '+t.c+'55;color:'+t.c+'">'+t.av+'</span>'
-    +'<span><span style="display:block" class="tn">'+t.n+'</span><span style="display:block" class="tr">'+t.r+'</span>'
-    +'<span style="display:block" class="tmetric">'+t.m+'</span></span></div></div>';}).join('');
-})();
-
 /* ════ FAQ ════ */
 (function(){
   var Q=[
